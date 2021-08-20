@@ -5,7 +5,7 @@ import { Container, Nav, Navbar, Button } from 'react-bootstrap';
 import { useAuth } from '../../contexts/AuthContext';
 import { useProducts } from '../../contexts/ProductContext';
 import Song from '../../Song/Song';
-import logo from './images.png';
+import logo from './logo-new.png';
 
 const Header = () => {
   const { history } = useProducts()
@@ -32,8 +32,8 @@ const Header = () => {
           <Navbar.Brand href="/">
             <img
               src={logo}
-              width="50"
-              height="50"
+              width="60"
+              height="60"
               className="d-inline-block align-top"
               alt="#"
             />
