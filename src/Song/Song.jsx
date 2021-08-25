@@ -4,16 +4,13 @@ import MusicOffIcon from '@material-ui/icons/MusicOff';
 
 import useSound from 'use-sound';
 
-import SentimentVeryDissatisfiedSharpIcon from '@material-ui/icons/SentimentVeryDissatisfiedSharp';
-
 export default function Song() {
     const [play, { stop }] = useSound(audio);
 
     return (
-        <div>
-            <h6 style={{ color: '#b8edfe' }}>If BoReD <SentimentVeryDissatisfiedSharpIcon /></h6>
-            <MusicNoteIcon style={{ color: '#19bbef' }} onClick={() => play()} />
-            <MusicOffIcon style={{ color: '#0d6efd' }} onClick={() => stop()} />
+        <div  style={{display: 'flex', alignItems: 'center'}}>
+            <MusicNoteIcon style={{ color: '#deab50' }} onClick={() => play()} />
+            <MusicOffIcon style={{ color: '#434037' }} onClick={() => stop()} />
         </div >
     );
 };

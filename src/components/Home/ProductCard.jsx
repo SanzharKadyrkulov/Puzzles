@@ -7,12 +7,19 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { useAuth } from '../../contexts/AuthContext';
 import CommentIcon from '@material-ui/icons/Comment';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
+import Rating from '@material-ui/lab/Rating';
+import axios from 'axios';
+import { JOSN_API_BROWSER } from '../../helpers/consts';
+
 
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1
+  },
+  button: {
+    margin: theme.spacing(1),
   },
   menuButton: {
     marginRight: theme.spacing(1)
@@ -42,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(8)
   },
   cardMedia: {
-    paddingTop: '56.25%'
+    paddingTop: '96.25%'
   },
   cardContent: {
     flexGrow: 1
@@ -54,10 +61,17 @@ const useStyles = makeStyles((theme) => ({
 
 const ProductCard = ({ item }) => {
   const classes = useStyles()
-  const { history, deleteProduct, addProductToCart, cart, getCart, favProductToCart, fav, getFav, editProduct } = useProducts()
+  const { history, deleteProduct, addProductToCart, cart, getCart, favProductToCart, fav, getFav, editProduct,  } = useProducts()
   const { user } = useAuth()
   const [newCart, setNewCart] = useState(null)
   const [newFav, setNewFav] = useState(null)
+  const getRating = () => {
+    let sum = item.rating.reduce((a, b) => {
+      return a+b.rating
+    }, 0)
+    return sum / item.rating.length
+  }
+  const [rating, setrating] = useState(getRating())
   useEffect(() => {
 
     getCart()
@@ -80,7 +94,8 @@ const ProductCard = ({ item }) => {
     // console.log('HERE', newCart)
     if (newCart && newCart.products) {
       const foundItem = newCart?.products.find((product) => product.item.id === id)
-      return foundItem ? 'secondary' : 'default'
+      // return foundItem ? 'secondary' : 'default'
+      return foundItem
     }
   }
   const checkItemInFav = (id) => {
@@ -119,34 +134,72 @@ const ProductCard = ({ item }) => {
   }
   const isLiked = (productos) => {
     if(productos.likes.includes(user.email)) {
-      return 'secondary'
+      return 'secondary'  
     }
     return 'default'
   }
+  const [browsingHistory, setBrowsingHistory] = useState()
+    const getBrowsingHistory = async () => {
+        const {data} = await axios.get(JOSN_API_BROWSER)
+        console.log(data);
+        const bd = await setBrowsingHistory(data[0].history)
+    }
+    useEffect(() => {
+        getBrowsingHistory()
+    },[]) 
+  const addBrowsingHistory = async (id) => {
+    let newArr = [...browsingHistory]
+    newArr.push(id)
+    let newObj = {
+      history: [...newArr],
+      id:1
+    }
+    const data = await axios.patch(`${JOSN_API_BROWSER}/1`, newObj)
+}
 
   return (
     <Grid style={{ backgroundColor: `trasparent`}} item key={item.id} xs={12} sm={6} md={4}>
-      <Card style={{ backgroundColor: `rgba(85, 130, 159, 0.4)`}} className={classes.card}>
+      <Card style={{ backgroundColor: `rgba(85, 130, 159, 0.0)`}} className={classes.card}>
         <CardMedia
-          onClick={() => history.push(`/details/${item.id}`)}
+          onClick={() => {
+            addBrowsingHistory(item.id)
+            history.push(`/details/${item.id}`)
+          }}
           className={classes.cardMedia}
           image={item.image}
           title="Image Title"
         />
         <CardContent style={{ backgroundColor: `trasparent`, backgroundSize: "cover", backgroundPosition: "top" }} className={classes.cardContent}>
-          <Typography style={{color: '#cffbfb'}} variant="h4" gutterBottom>
+          <Typography style={{color: '#333'}} variant="h4" gutterBottom>
             {item.title}
           </Typography>
-          <Typography style={{color: '#8fd0ca'}} variant="h5" >
+          <Typography style={{color: '#3f3746'}} variant="h5" >
             {item.type}
           </Typography>
-          <Typography style={{color: '#e7fbfc'}} variant="h6" gutterBottom>
+          <Typography style={{color: '#000'}} variant="h6" gutterBottom>
             {item.price}$
           </Typography>
+          {/* <Rating
+          name="simple-controlled"
+          value={value}
+          onChange={(event, newValue) => {
+            setValue(newValue);
+          }}
+        /> */}
+        <Rating name="read-only" value={rating} readOnly />
         </CardContent>
         <CardActions>
-          <Button onClick={() => history.push(`/details/${item.id}`)} size="small" >
+          {/* <Button onClick={() => history.push(`/details/${item.id}`)} size="small" >
             View
+          </Button> */}
+          <Button
+            variant={checkItemInCart(item.id) ? 'contained':'outlined'}
+            color="secondary"
+            className={classes.button}
+            startIcon={<AddShoppingCartIcon />}
+            onClick={() => addProductToCart(item)}
+          >
+            {checkItemInCart(item.id) ? "Remove from cart" : "Add to cart"}
           </Button>
           {user && user.email === 'sancho@gmail.com' || user && user.email === 'isakov@gmail.com' ? <><Button onClick={() => history.push(`/editproduct/${item.id}`)} size="small" >
             Edit
@@ -161,34 +214,34 @@ const ProductCard = ({ item }) => {
               <DeleteIcon />
             </IconButton></> : <></>}
 
-          <IconButton
-            color={checkItemInCart(item.id)}
+          {/* <IconButton
+            // color={checkItemInCart(item.id)}
             aria-label="add to shopping"
             onClick={() => addProductToCart(item)}
           >
             <AddShoppingCartIcon />
-          </IconButton>
-          <BookmarkBorderIcon
-            color={checkItemInFav(item.id)}
-            aria-label="add to shopping"
-            onClick={() => favProductToCart(item)}
-          />
+          </IconButton> */}
           <h5>{likes}</h5>
           <FavoriteBorderIcon
             color={isLiked(item)}
             aria-label="add to shopping"
             onClick={() => handleLikes(item.id, item)}
           />
-        </CardActions>
-          <IconButton
-            color={checkItemInCart(item.id)}
+          {/* <IconButton
+            // color={checkItemInCart(item.id)}
             aria-label="add to shopping"
             color='warning'
             onClick={() => history.push(`/comments/${item.id}`)}
             // onClick={() => addProductToCart(item)}
           >
             <CommentIcon />
-          </IconButton>
+          </IconButton> */}
+        <BookmarkBorderIcon
+          color={checkItemInFav(item.id)}
+          aria-label="add to shopping"
+          onClick={() => favProductToCart(item)}
+        />
+        </CardActions>
       </Card>
     </Grid>
   );

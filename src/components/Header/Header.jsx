@@ -5,7 +5,7 @@ import { Container, Nav, Navbar, Button } from 'react-bootstrap';
 import { useAuth } from '../../contexts/AuthContext';
 import { useProducts } from '../../contexts/ProductContext';
 import Song from '../../Song/Song';
-import logo from './logo-new.png';
+import logo from './logo-new.jpeg';
 
 const Header = () => {
   const { history } = useProducts()
@@ -27,23 +27,23 @@ const Header = () => {
 
   return (
     <>
-      <Navbar collapseOnSelect expand="md" style={{backgroundColor: '#264659'}} variant="dark">
+      <Navbar collapseOnSelect expand="md" style={{backgroundColor: '#fff'}} color='black' >
         <Container>
           <Navbar.Brand href="/">
             <img
               src={logo}
-              width="60"
-              height="60"
+              width="50"
+              height="50"
               className="d-inline-block align-top"
               alt="#"
             />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="mr-auto">
+            <Nav style={{fontSize:'18px'}} className="mr-auto">
               <Song />
               <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/about">About us</Nav.Link>
+              <Nav.Link href="/browsinghistory">Browsing history</Nav.Link>
               <Nav.Link href="/productlist" >Catalog</Nav.Link>
               <Nav.Link href="/chat">Chat</Nav.Link>
               <Nav.Link href="/cart">Busket</Nav.Link>
@@ -59,13 +59,13 @@ const Header = () => {
             />
           </Form> */}
           {user ? (<>
-            <div style={{ color: 'white', margin: '10px', border: '1px solid white', padding: '5px', borderRadius: '5px' }}>{user.email}</div>
-            <Button onClick={handleLogout} variant="primary" >Log Out</Button>
+            <div style={{ color: '#000', margin: '10px', border: '1px solid #000', padding: '5px', borderRadius: '5px',  }}>{user.email}</div>
+            <Button style={{ marginLeft: '10px', fontSize:'18px'  }} onClick={handleLogout} variant="danger" >Log Out</Button>
           </>)
             :
             (<>
-              <Button onClick={() => history.push('/login')} variant="secondary" style={{ marginLeft: '10px' }}>Log In</Button>
-              <Button onClick={() => history.push('/registration')} variant="primary" >Sign Up</Button>
+              <Button onClick={() => history.push('/login')} variant="danger" style={{ marginLeft: '10px', fontSize:'18px' }}>Log In</Button>
+              <Button onClick={() => history.push('/registration')} variant="danger" style={{ marginLeft: '10px', fontSize:'18px' }} >Sign Up</Button>
             </>)
 
           }

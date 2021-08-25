@@ -8,14 +8,9 @@ import { Grid } from '@material-ui/core';
 import ProductCard from '../Home/ProductCard';
 import MainLayout from '../../layouts/MainLayouts';
 
-const useStyles = makeStyles({
-    table: {
-        minWidth: 650,
-    },
-    tableCellImg: {
-        width: 50,
-    }
-});
+const useStyles = makeStyles((theme)=>({
+
+}));  
 
 
 
@@ -90,8 +85,13 @@ export default function Cart() {
         // </TableContainer>
         <MainLayout>
 
-        <div style={{backgroundImage: "url(https://cdn.wallpapersafari.com/88/97/9dS6DT.jpg)"}} className={classes.cardGrid} maxWidth="md">
-        <Grid style={{marginTop:'0px', marginBottom:'0px'}} container spacing={4}>
+        <div 
+        // style={{backgroundImage: "url(https://cdn.wallpapersafari.com/88/97/9dS6DT.jpg)"}} className={classes.cardGrid} maxWidth="md"
+        style={{width: '100%'}}
+        >
+        <Grid 
+        style={{marginTop:'0px', marginBottom:'0px'}} 
+        container spacing={4}>
           {fav.products && fav.products.map((product) => (
             <ProductCard key={product.item.id} item={product.item} />
           ))}

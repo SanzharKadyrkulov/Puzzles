@@ -58,11 +58,11 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(2, 4, 3),
     },
     input: {
-      color: "#e8c271",
+      color: "#000",
       borderRightColor: '#FFF'
   },
   input__label: {
-      color: "#f2e49d",
+      color: "#c53f45",
       borderRightColor: '#FFF'
   },
   }));
@@ -83,12 +83,10 @@ const ProductComments = () => {
     const handleInput = (e) => {
 
         if(productDetails){
-            let d = new Date(Date.now());
-            d.toString()
             setComment({
                 email: user.email,
                 comment: e.target.value,
-                date: d.toISOString()
+                date: new Date().toLocaleString()
             })
             console.log(comment);
         }
@@ -165,21 +163,21 @@ const ProductComments = () => {
       {productDetails ?
 
 
-          <Paper style={{ backgroundImage: `url(${productDetails.animation})`}} className={classes.paper}>
-            <Paper style={{backgroundColor: '#00000000', color:'white', maxWidth: "500px"}}  spacing={2}>
+          // <Paper style={{ backgroundImage: `url(${productDetails.animation})`}} className={classes.paper}>
+            <Paper style={{backgroundColor: '#fff', color:'white', maxWidth: "600px", minWidth: '500px'}}  spacing={2}>
               <Grid item xs={12} sm container>
                 <Grid item xs container direction="column" spacing={2}>
                   <Grid item xs>
                     {product ? product.comments.map((commentix, index) => (
                         <div style={marginOfComment(commentix)}>
                             <div style={{display: 'flex', flexDirection: 'row', alignItems:'center', justifyContent: 'flex-start'}}>
-                                <p style={{color:'#fdbcf6'}}>{commentix.email}</p>
-                                <p style={{ fontSize: '12px', color: '#d3daf1', marginLeft: '10px'}}>{commentix.date}</p>
+                                <p style={{color:'#c10921'}}>{commentix.email}</p>
+                                <p style={{ fontSize: '12px', color: 'gray', marginLeft: '10px'}}>{commentix.date}</p>
                                 
                             </div>
-                            <div><p style={{color: '#e8c271', marginBottom: '2px'}}>{commentix.comment}</p></div>
-                            {whoIsAuthor(commentix) ?<button onClick={() => deleteComment(index, product.id, product)} style={{transform: 'scale(0.7)', color: '#f7a15f', backgroundColor:"#3d2740",borderRadius:'5px'}}>delete</button>:<></>}
-                            {whoIsAuthor(commentix) ?<button type="button" onClick={() => handleOpen()} style={{transform: 'scale(0.7)', color: '#f7a15f', backgroundColor:"#3d2740",borderRadius:'5px'}}>edit</button>:<></>}
+                            <div><p style={{color: '#000', marginBottom: '2px'}}>{commentix.comment}</p></div>
+                            {whoIsAuthor(commentix) ?<button onClick={() => deleteComment(index, product.id, product)} style={{transform: 'scale(0.7)', color: '#fff', backgroundColor:"#c10921",borderRadius:'5px'}}>delete</button>:<></>}
+                            {whoIsAuthor(commentix) ?<button type="button" onClick={() => handleOpen()} style={{transform: 'scale(0.7)', color: '#fff', backgroundColor:"#c10921",borderRadius:'5px'}}>edit</button>:<></>}
                     <Modal
                         aria-labelledby="spring-modal-title"
                         aria-describedby="spring-modal-description"
@@ -226,7 +224,7 @@ const ProductComments = () => {
                     variant='outlined'
                     label='Comment'
                     color='secondary'
-                    style={{width:'420px'}}
+                    style={{width:'86%'}}
                     onChange={(e) => handleInput(e)}
                     InputLabelProps={{className: classes.input__label}}
                             inputProps={{ className: classes.input }}
@@ -240,7 +238,7 @@ const ProductComments = () => {
                       color="inherit"
                       onClick={(e) => sendComment(e, product.id, product)}
                     >
-                      <SendIcon color="white" />
+                      <SendIcon color="secondary" />
 
                     </Button>
                     </form>
@@ -248,7 +246,7 @@ const ProductComments = () => {
                     
                     {/* <Typography variant="h4">{productDetails.price}$</Typography> */}
                   </Grid>
-                  <Grid item>
+                  {/* <Grid item>
                     <IconButton
                       edge="end"
                       aria-label="account of current user"
@@ -259,11 +257,11 @@ const ProductComments = () => {
                       <RestoreIcon style={{border:'2px solid rgba(52, 52, 52, 0.5)', borderRadius:"50%"}} color="white" />
 
                     </IconButton>
-                  </Grid>
+                  </Grid> */}
                 </Grid>
               </Grid>
             </Paper>
-          </Paper>
+          // </Paper>
 
         :
         <CircularProgress />

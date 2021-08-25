@@ -10,10 +10,10 @@ import Paper from '@material-ui/core/Paper';
 import { useEffect } from 'react';
 import { useProducts } from '../../contexts/ProductContext';
 import { Button, Typography } from '@material-ui/core';
-import { useAuth } from '../../contexts/AuthContext';
 import { useParams } from 'react-router-dom';
-import MainLayout from "../../layouts/MainLayouts";
 import HeaderLayout from "../../layouts/HeaderLayout";
+import axios from 'axios';
+import { JSON_API_ORDER } from '../../helpers/consts';
 
 
 const useStyles = makeStyles({
@@ -31,6 +31,9 @@ export default function Cart() {
   const classes = useStyles();
   const params = useParams()
     const {cart, getCart, changeProductCount, history} = useProducts()
+    const [orders, setOrders] = useState()
+    const time = new Date().toLocaleString();
+
   useEffect(() => {
     getCart()
   },[])
@@ -47,6 +50,20 @@ export default function Cart() {
     }
     changeProductCount(count,id)
   }
+  const cartCleaner = () => {
+    localStorage.removeItem('cart')
+    getCart()
+  }
+  const addOrderHistory = async (order) => {
+    const newOrder = {
+        ...order,
+        date: time
+    }
+    const data = await axios.post(JSON_API_ORDER, newOrder)
+}
+useEffect(() => {
+    setOrders(cart)
+  },[cart])
 
   return (
     <HeaderLayout>
@@ -97,7 +114,14 @@ export default function Cart() {
                     </Typography>
                 </TableCell>
                 <TableCell align="right">
-                    <Button onClick={() => history.push("/order")} className="btn-buy" style={{backgroundColor: "#78d7e3"}}>
+                    <Button 
+                      onClick={() => {
+                      addOrderHistory(orders)
+                      cartCleaner()
+                      history.push("/order")}} 
+                      className="btn-buy" 
+                      style={{backgroundColor: "#78d7e3"}}
+                    >
                       Buy
                     </Button>
                 </TableCell>

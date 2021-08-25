@@ -17,6 +17,10 @@ import ProtectedRoute from './ProtectedRoute';
 import ProductComments from '../components/Home/ProductComments';
 import OrderForm from '../OrderForm/OrderForm';
 import Thanks from '../OrderForm/Thanks';
+import OrderHistory from '../OrderHistory/OrderHistory';
+import BrowsingHistory from '../components/BrowsingHistory/BrowsingHistory';
+import ProductRating from '../components/Home/ProductRating';
+import Chat from '../components/Chat/Chat';
 
 const Routes = () => {
     return (
@@ -24,6 +28,7 @@ const Routes = () => {
             <ProductContextProvider>
                 {/* <Header /> */}
                 <Switch>
+                    <Route exact path='/chat' component={Chat}/>
                     <Route exact path="/login" component={Login} />
                     <Route exact path="/registration" component={Registration} />
                     <Route exact path="/about" component={About} />
@@ -37,6 +42,9 @@ const Routes = () => {
                     <Route exact path='/comments/:id' component={ProductComments}/>
                     <Route exact path='/order' component={OrderForm}/>
                     <Route exact path='/thanks' component={Thanks} />
+                    <Route exact path='/orderhistory' component={OrderHistory}/>
+                    <Route exact path='/browsinghistory' component={BrowsingHistory}/>
+                    <Route exact path='/rating/:id' component={ProductRating}/>
                 </Switch>
                 {/* <Footer /> */}
             </ProductContextProvider>

@@ -5,12 +5,12 @@ import Routes from "./Routes/Routes";
 
 
 function App() {
-  const {checkAuth} = useAuth()
-  useEffect(() => {
-    if(localStorage.getItem('token')){
-      checkAuth()
-    }
-  }, [])
+  // const {checkAuth} = useAuth()
+  // useEffect(() => {
+  //   if(localStorage.getItem('token')){
+  //     checkAuth()
+  //   }
+  // }, [])
 
   return (
     <>

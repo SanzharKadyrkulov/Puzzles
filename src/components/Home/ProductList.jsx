@@ -105,10 +105,12 @@ useEffect(() => {
   return (
     <MainLayout>
 
-    <main style={{ backgroundImage: `url(https://images.alphacoders.com/529/529250.jpg)`, backgroundSize: "cover", backgroundPosition: "top" }}>
+    <main style={{marginBottom: '30px'}}
+    // style={{ backgroundImage: `url(https://images.alphacoders.com/529/529250.jpg)`, backgroundSize: "cover", backgroundPosition: "top" }}
+    >
       <div className={classes.mainContent}>
         <Container maxWidth='sm'>
-          <Typography variant='h2' align='center' color='textPrimary' gutterBottom>Our Heroes!</Typography>
+          <Typography variant='h2' align='center' color='textPrimary' gutterBottom>Catalogue!</Typography>
           
           <div className={classes.mainButtons}>
             <Grid className={classes.blabla} container spacing={3} justify="center">
@@ -121,24 +123,27 @@ useEffect(() => {
                     onChange={(e) => handleValue(e)}
                   />
                 </Form>
-              <Grid item>
-                {user && user.email === 'sancho@gmail.com' || user && user.email === 'isakov@gmail.com' ? <Button onClick={() => history.push("/addproduct")} variant="outlined" color="secondary">Add Hero</Button> : <></>}
+                {user && user.email === 'sancho@gmail.com' ? <Button style={{marginTop:'10px'}} onClick={() => history.push("/addproduct")} variant="outlined" color="secondary">Add Product</Button> : <></>}
+              <Grid item >
                 
-              </Grid>
               <SideBar />
+              </Grid>
             </Grid>
           </div>
         </Container>
       </div>
-      <Container className={classes.cardGrid} maxWidth="md">
+      <Container className={classes.cardGrid} maxWidth="lg">
         <Grid container spacing={4}>
           {productsData && productsData.map((item) => (
             <ProductCard key={item.id} item={item} />
           ))}
-        </Grid>
-        <div style={{ marginLeft: '280px' }}>
-          <Pagination style={{textColor: "white", margin: '10px auto !important'}} count={pages} color="primary" page={+page} onChange={handlePage} />
+        <div style={{ marginBottom: '30px',margin: '0 auto' }}>
+          <Pagination style={{textColor: "white", }} count={pages} color="primary" page={+page} onChange={handlePage} />
         </div>
+        </Grid>
+        {/* <div style={{ marginBottom: '30px', marginTop: '10px', marginLeft: '435px'}}>
+          <Pagination style={{textColor: "white", }} count={pages} color="primary" page={+page} onChange={handlePage} />
+        </div> */}
       </Container>
     </main>
     </MainLayout>

@@ -66,13 +66,18 @@ const theme = createTheme({
             image: '',
             type: '',
             price: 0,
-            likes: []
+            likes: [],
+            comments: [],
+            rating:[]
         })
 
         const handleInp = (e) => {
             let obj = {
                 ...product,
                 [e.target.name]: e.target.value
+            }
+            if (e.target.name === 'price'){
+                obj.price = +e.target.value
             }
             setProduct(obj)
 
@@ -136,6 +141,7 @@ const theme = createTheme({
                         />
                         <TextField
                             name="price"
+                            type='number'
                             fullWidth
                             variant="outlined"
                             label='Price'
@@ -145,17 +151,7 @@ const theme = createTheme({
                             inputProps={{ className: classes.input }}
                             color='secondary'
                         />
-                        <TextField
-                            fullWidth
-                            name="animation"
-                            variant="outlined"
-                            label='Animation'
-                            InputLabelProps={{className: classes.input__label}}
-                            onChange={handleInp}
-                            className={classes.textfield}
-                            inputProps={{ className: classes.input }}
-                            color='secondary'
-                        />
+                        
                         <Button onClick={() => handleClick(product)}>
                             <SaveIcon style={{ color: '#010101' }} />
                         </Button>

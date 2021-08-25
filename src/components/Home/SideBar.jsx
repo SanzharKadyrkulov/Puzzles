@@ -13,10 +13,10 @@ const useStyles = makeStyles(theme => ({
         padding: theme.spacing(2)
     },
     root: {
-        background: 'linear-gradient(45deg, #58a9a7 30%, #58a9a7 90%)',
+        background: 'linear-gradient(45deg, #c10921 30%, #c10921 90%)',
         borderRadius: 3,
         border: 0,
-        color: '#e5ecf4',
+        color: '#fef7f0',
         height: 48,
         padding: '0 30px',
         boxShadow: '0 3px 5px 2px rgba(126, 190, 202, .3)',
@@ -25,7 +25,9 @@ const useStyles = makeStyles(theme => ({
     textTransform: 'capitalize',
     },
 }))
-
+function valuetext(value) {
+    return `${value}°C`;
+  }
 const SideBar = () => {
     const classes = useStyles()
     const { getProductsData, history } = useProducts()
@@ -38,7 +40,7 @@ const SideBar = () => {
         return search.get('price_lte')
     }
     const [type, setType] = useState(getType())
-    const [price, setPrice] = useState(getPrice())
+    const [price, setPrice] = useState([230, 5000])
 
 
     const handleChangeType = (e) => {
@@ -60,7 +62,8 @@ const SideBar = () => {
     }
     const handleChangePrice = (e, value) => {
         const search = new URLSearchParams(history.location.search)
-        search.set('price_lte', value)
+        search.set('price_gte', value[0])
+        search.set('price_lte', value[1])
         history.push(`${history.location.pathname}?${search.toString()}`)
         getProductsData()
         setPrice(value)
@@ -69,32 +72,43 @@ const SideBar = () => {
     const resetPrice = () => {
         const search = new URLSearchParams(history.location.search)
         search.delete('price_lte')
+        search.delete('price_gte')
         search.delete('type')
         history.push(`${history.location.pathname}?${search.toString()}`)
         getProductsData()
-        setPrice(getPrice())
+        setPrice([230,5000])
+        setType('')
     }
 
+
     return (
-        <Grid  container md={3}>
+        <Grid container md={3}>
             <Paper style={{  backgroundSize: "cover", backgroundPosition: "top", backgroundColor: 'transparent' }}
                 elevation={2} className={classes.paper}>
                 <FormControl component='fieldset'>
                     <FormLabel component='legend'>Type</FormLabel>
                     <RadioGroup value={type} onChange={handleChangeType}>
-                        <FormControlLabel value='Fighter' control={<Radio />} label="Fighter" />
-                        <FormControlLabel value='Mage' control={<Radio />} label="Mage" />
-                        <FormControlLabel value='Marksman' control={<Radio />} label="Marksman" />
+                        <FormControlLabel value="Rubic's cube" control={<Radio />} label="Rubic's cubes" />
+                        <FormControlLabel value='Puzzle' control={<Radio />} label="Puzzles" />
+                        <FormControlLabel value='Skilltoy' control={<Radio />} label="Skilltoys" />
                         {/* <FormControlLabel value='all' control={<Radio />} label="All" /> */}
                     </RadioGroup>
                 </FormControl>
 
                 <Grid>
-                    <Slider color="primary" value={price} onChange={handleChangePrice} valueLabelDisplay='auto' aria-labelledby='discrette-slider' min={14000} max={32000} />
+                    {/* <Slider color="primary" value={price} onChange={handleChangePrice} valueLabelDisplay='auto' aria-labelledby="range-slider" min={240} max={15000} /> */}
+                    <Slider
+                        value={price}
+                        onChange={handleChangePrice}
+                        valueLabelDisplay="auto"
+                        aria-labelledby="range-slider"
+                        getAriaValueText={valuetext}
+                        min={230} max={4550}
+                    />
                     <Button classes={{
-        root: classes.root, // class name, e.g. `classes-nesting-root-x`
-        label: classes.label, // class name, e.g. `classes-nesting-label-x`
-      }} onClick={resetPrice} variant='contained' >Reset</Button>
+                        root: classes.root, // class name, e.g. `classes-nesting-root-x`
+                        label: classes.label, // class name, e.g. `classes-nesting-label-x`
+                    }} onClick={resetPrice} variant='contained' >Reset</Button>
                 </Grid>
             </Paper>
         </Grid>

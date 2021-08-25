@@ -14,10 +14,11 @@ export const useProducts = () => {
 
 const INIT_STATE = {
     productsData: [],
+    rec: [],
     productDetails: null,
     cart: [],
     pages: 1,
-    fav: []
+    fav: [],
 }
 
 const reducer = (state = INIT_STATE, action) => {
@@ -30,6 +31,8 @@ const reducer = (state = INIT_STATE, action) => {
             return { ...state, cart: action.payload }
         case ACTIONS.GET_FAV:
             return { ...state, fav: action.payload }
+        case ACTIONS.GET_REC:
+            return {...state, rec:action.payload.data}
         default: return state
     }
 }
@@ -48,6 +51,18 @@ const ProductContextProvider = ({ children }) => {
             payload: res
         })
     }
+
+    const getRecData = async () => {
+        const search = new URLSearchParams(history.location.search)
+        // search.set('_limit', PRODUCTLIMIT)
+        history.push(`${history.location.pathname}?${search.toString()}`)
+        const res = await axios.get(`${JSON_API_PRODUCTS}/${window.location.search}`)
+        dispatch({
+            type: ACTIONS.GET_REC,
+            payload: res
+        })
+    }
+
     const getProductDetails = async (id) => {
         const { data } = await axios.get(`${JSON_API_PRODUCTS}/${id}`)
         dispatch({
@@ -192,6 +207,7 @@ const ProductContextProvider = ({ children }) => {
         history,
         productsData: state.productsData,
         productDetails: state.productDetails,
+        rec: state.rec,
         cart: state.cart,
         fav: state.fav,
         pages: state.pages,
@@ -206,6 +222,8 @@ const ProductContextProvider = ({ children }) => {
         changeProductCount,
         favProductToCart,
         changeFavCount,
+        getRecData,
+        
     }
     return (
         <productContext.Provider value={values}>

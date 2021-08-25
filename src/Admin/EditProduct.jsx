@@ -39,6 +39,7 @@ const useStyles = makeStyles(theme => ({
         color: "#fdf5bf",
         borderRightColor: '#FFF'
     },
+    
 }))
 
 const EditProduct = () => {

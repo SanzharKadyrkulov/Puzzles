@@ -30,8 +30,8 @@ const Advertising = () => {
     const classes = useStyles()
     const {history} = useProducts()
     setTimeout(() => {
-        history.push('/productlist')
-    }, 2000);
+        history.push('/orderhistory')
+    }, 3500);
     return (
         <Paper className={classes.mainFeaturesPost}
             style={{ backgroundImage: `url(https://marketplace.canva.com/EAEgPdD7hWM/1/0/1600w/canva-abstract-thank-you-card-Lb3dqYctuh8.jpg)`, backgroundPosition: 'center', }}>
