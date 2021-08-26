@@ -1,6 +1,6 @@
-export const JSON_API_PRODUCTS = 'http://localhost:8000/Products'
-export const JSON_API_ORDER = 'http://localhost:8000/orderHistory'
-export const JOSN_API_BROWSER= 'http://localhost:8000/browsinHistory'
+export const JSON_API_PRODUCTS = 'https://puzzles-kg.herokuapp.com/api/Products'
+export const JSON_API_ORDER = 'https://puzzles-kg.herokuapp.com/api/orderHistory'
+export const JOSN_API_BROWSER= 'https://puzzles-kg.herokuapp.com/api/browsinHistory'
 export const AUTH_API_REG = 'https://intense-retreat-64750.herokuapp.com/auth/registration'
 export const AUTH_API_LOGI = "https://intense-retreat-64750.herokuapp.com/auth/login"
 
