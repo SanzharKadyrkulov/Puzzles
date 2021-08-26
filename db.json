@@ -167,9 +167,33 @@
       "price": 1650,
       "animation": "https://1.bp.blogspot.com/-JWRD7-TYlP4/X2Yc336eIfI/AAAAAAAAB2A/quKcdCC_ftAuy76TGfGjatabVnnel3_AQCLcBGAsYHQ/s0/69c4c665b8cfe31e5dcdaf1fbfc55717.png",
       "likes": [],
-      "comments": [],
+      "comments": [
+        {
+          "email": "sancho@gmail.com",
+          "comment": "lkaskjf;as",
+          "date": "26.08.2021, 10:52:39"
+        },
+        {
+          "email": "sancho@gmail.com",
+          "comment": "asdf;aks",
+          "date": "26.08.2021, 10:52:40"
+        }
+      ],
       "id": 6,
-      "rating": []
+      "rating": [
+        {
+          "email": "sancho@gmail.com",
+          "rating": 3
+        },
+        {
+          "email": "sancho@gmail.com",
+          "rating": 5
+        },
+        {
+          "email": "sancho@gmail.com",
+          "rating": 1
+        }
+      ]
     },
     {
       "title": "8x8",
@@ -569,16 +593,106 @@
       "totalPrice": 240,
       "date": "25.08.2021, 19:59:18",
       "id": 2
+    },
+    {
+      "products": [
+        {
+          "item": {
+            "title": "2x2 GAN",
+            "describtion": "It could have been just another peaceful night in a remote village, near the outskirts of the Dark Forest, but they were interrupted by the vicious howling of the wolves from afar. In a small cabin, a little girl was kneeling beside her bed, praying. Next to her stood a disproportionately giant scythes. Indeed, she was praying for the return of the legendary Hunter - \nRoger.png\n Roger. Only he could save the village from being vandalized by the wolves.\n\nYears earlier, Roger had saved her family from a pack of wild wolves, whom they had accidentally encountered when wandering on the Land of Dawn. His bravery took a huge toll on the wolves. ",
+            "image": "https://puzzles.in.ua/image/catalog/goods/KubikRubika/QiYi_MoFangGe/QiDi/QIDI-color.jpg",
+            "type": "Rubic's cube",
+            "price": 240,
+            "animation": "https://www.xtrafondos.com/wallpapers/ruby-revamp-de-mobile-legends-6433.jpg",
+            "likes": [
+              "testUser@gmail.com",
+              "sancho@gmail.com",
+              "germezz@germezz.com",
+              "sanchos@gmail.com",
+              "test@test.com"
+            ],
+            "comments": [],
+            "id": 1,
+            "rating": [
+              {
+                "email": "sancho@gmail.com",
+                "rating": 5
+              }
+            ]
+          },
+          "count": 1,
+          "subPrice": 240
+        },
+        {
+          "item": {
+            "title": "3x3",
+            "describtion": "Many years ago, enjoying the night opera performed by Cecilion was the most popular form of entertainment for the people of Avalor. It was always full house at the theatre, each time this famous Opera actor performed. Everyone was attracted by his indescribable handsomeness and talent. However, the applause, love and cheers from human beings didn’t make Cecilion happy. He was a Blood Demon, and it was hard for him to open his mind to humans. He had always tried hard, to conceal his true identity and blend in with human society.\n\n",
+            "image": "https://rozum.com.ua/wp-content/uploads/2019/06/kubik-rubika-3h3-qiyi-mofangge-warrior-1.jpg",
+            "type": "Rubic's cube",
+            "price": 300,
+            "animation": "https://plainmemory.com/wp-content/uploads/2020/07/mobile-legends-full-hd-wallpaper-17.jpg",
+            "likes": [
+              "testUser@gmail.com",
+              "sanchos@gmail.com",
+              "germezz@germezz.com",
+              "test@test.com"
+            ],
+            "comments": [
+              {
+                "email": "germezz@germezz.com",
+                "comment": "lfhs",
+                "date": "2021-08-23T13:05:13.207Z"
+              },
+              {
+                "email": "germezz@germezz.com",
+                "comment": "skdfs;",
+                "date": "2021-08-23T13:05:13.824Z"
+              },
+              {
+                "email": "germezz@germezz.com",
+                "comment": "slkkdfjksd",
+                "date": "2021-08-23T13:05:14.616Z"
+              },
+              {
+                "email": "germezz@germezz.com",
+                "comment": "sdlkfkskdfj",
+                "date": "2021-08-23T13:05:15.326Z"
+              },
+              {
+                "email": "sancho@gmail.com",
+                "comment": "dlgd",
+                "date": "25.08.2021, 16:28:57"
+              }
+            ],
+            "id": 2,
+            "rating": [
+              {
+                "email": "test@test.com",
+                "rating": 5
+              },
+              {
+                "email": "test@test.com",
+                "rating": 1
+              },
+              {
+                "email": "test@test.com",
+                "rating": 5
+              }
+            ]
+          },
+          "count": "3",
+          "subPrice": 900
+        }
+      ],
+      "totalPrice": 1140,
+      "date": "26.08.2021, 10:55:33",
+      "id": 3
     }
   ],
   "browsinHistory": [
     {
       "history": [
-        2,
-        2,
-        11,
-        10,
-        4
+
       ],
       "id": 1
     }
