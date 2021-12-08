@@ -1,30 +1,29 @@
-import { Grid, makeStyles } from '@material-ui/core';
-import React from 'react';
-import MainLayout from '../../layouts/MainLayouts';
-import Advertising from './Advertising';
-import Carousel from './Carousel';
-import Content from './Content';
-import Welcome from './Welcome';
+import { Grid, makeStyles } from "@material-ui/core";
+import React from "react";
+import MainLayout from "../../layouts/MainLayouts";
+import Advertising from "./Advertising";
+import Carousel from "./Carousel";
+import Content from "./Content";
+import Welcome from "./Welcome";
 const useStyles = makeStyles((theme) => ({
-    root: {
-        marginTop: 20,
-    },
-    sideBar: {
-        flexWrap: 'nowrap'
-    }
-}))
+  root: {
+    marginTop: 20,
+  },
+  sideBar: {
+    flexWrap: "nowrap",
+  },
+}));
 const Home = () => {
-    const classes = useStyles()
-    return (
-        <MainLayout>
-
-        <Grid className={classes.sideBar} spacing-md={3} spacing-sm={3}>
-            <Welcome />
-            <Carousel/>
-            {/* <Content/> */}
-        </Grid>
-        </MainLayout>
-    );
+  const classes = useStyles();
+  return (
+    <MainLayout>
+      <Grid className={classes.sideBar} spacing-md={3} spacing-sm={3}>
+        {/* <Welcome />
+            <Carousel/> */}
+        {/* <Content/> */}
+      </Grid>
+    </MainLayout>
+  );
 };
 
 export default Home;
